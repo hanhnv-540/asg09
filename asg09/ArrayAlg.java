@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class ArrayAlg {
+Exception Exception = null;
 	//phan 2a
 	/*public <T> void printArray(T[] a){
 		for (int i = 0; i< a.length; i++){
@@ -19,20 +20,31 @@ public class ArrayAlg {
 	}
 	
 	//phan 2c
-	public static <T extends Comparable> Pair<T> maxTwo(T[] a){
+	public static <T extends Comparable<T>> Pair<T> maxTwo(T[] a){
 		if (a == null || a.length == 0) return null;
-		T max = a[0];
 		T max1 = a[0];
+		Integer in = new Integer(0);
+		T max2 = (T)in;
 		try{
-			for (int i = 1; i < a.length; i++){
-				if (max.compareTo(a[i]) < 0) max = a[i];
-				if (max1.compareTo(a[i]) < 0 && max1.compareTo(max) > 0) max1 = a[i];
+			for(int i = 0; i< a.length; i++){
+				if(a[i].compareTo(max2)>0){
+					if(a[i].compareTo(max1) > 0){
+						max2 = max1;
+						max1 = a[i];
+					}
+					else 
+						max2 = a[i];
+					}
+					else if(max2.compareTo(max1)>= 0)
+						max2 = a[i];
+				}
 			}
-		}
 		catch(Exception e){
 			System.out.println(e);
 		}
-		return new Pair<T>(max, max1);
+		
+		
+		return new Pair<T>(max1, max2);
 	}
 
 	
