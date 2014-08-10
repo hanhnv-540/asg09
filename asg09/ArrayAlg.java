@@ -12,7 +12,9 @@ public class ArrayAlg {
 	public <T> void printArray(T[] a,int start,int end) throws Exception{
 	
 			for (int i = start; i< end; i++){
-					System.out.println(a[i]);
+				if (start < 0 || start >= end || end > a.length) 
+				throw Exception;
+				System.out.println(a[i]);
 			}
 	}
 	
